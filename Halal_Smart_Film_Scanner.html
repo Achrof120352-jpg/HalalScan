@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Halal Smart Film Scanner</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2e7d32;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #2e7d32;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      min-height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Halal Smart Film Scanner</h1>
+
+  <input type="file" id="imageInput" accept="image/*">
+
+  <button onclick="analyzeColor()">
+    วิเคราะห์สถานะ
+  </button>
+
+  <div class="result" id="result">
+    รอการวิเคราะห์...
+  </div>
+</div>
+
+<script>
+function analyzeColor(){
+  const resultDiv = document.getElementById('result');
+  
+  // จำลองข้อมูลผลการวิเคราะห์
+  const outcomes = [
+    { color: "Purple", status: "สดใหม่ (Fresh)", colorCode: "#800080" },
+    { color: "Blue", status: "เริ่มเปลี่ยนสภาพ (Mild)", colorCode: "#0000FF" },
+    { color: "Yellow", status: "ไม่สด (Spoiled)", colorCode: "#FFFF00" }
+  ];
+
+  // เลือกผลลัพธ์แบบสุ่มเพื่อจำลอง AI
+  const randomOutcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+
+  resultDiv.innerHTML = `
+    <div style="font-weight: bold; color: ${randomOutcome.colorCode}; font-size: 18px;">
+      ผลลัพธ์: ${randomOutcome.status}
+    </div>
+    <p>สีที่ตรวจพบ: ${randomOutcome.color}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
